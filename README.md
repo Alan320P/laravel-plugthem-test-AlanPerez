@@ -7,13 +7,12 @@ Proyecto de prueba que implementa encuestas, respuestas, reportes y autenticaci√
 PHP, Laravel 12, SQLite y Composer
 
 ## Instalaci√≥n
-
+- Pasos:
    ```bash
    Clonar el repositorio: git clone https://github.com/Alan320P/laravel-plugthem-test-AlanPerez.git
-   Ubicarse en la carpeta del proyecto laravel-plugthem-test-AlanPerez
-   Instalar dependecias con:composer install
-   Migrar y sembrar la base de datos:
-   php artisan migrate --seed
+   Ubicarse en la carpeta del proyecto: laravel-plugthem-test-AlanPerez
+   Instalar dependecias con: composer install
+   Migrar y sembrar la base de datos: php artisan migrate --seed
    Ejecutar el servidor: php artisan serve
 
 ## Comando Artisan
