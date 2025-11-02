@@ -1,0 +1,913 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Plugthem",
+        "description": "Documentación de la API de encuestas y respuestas",
+        "contact": {
+            "email": "soporte@plugthem.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://my-default-host.com",
+            "description": "Servidor local"
+        }
+    ],
+    "paths": {
+        "/api/questions/{question_id}/answers": {
+            "get": {
+                "tags": [
+                    "Answers"
+                ],
+                "summary": "Listar respuestas de una pregunta",
+                "description": "Listar respuestas de una pregunta",
+                "operationId": "f961c65f63ff961b282f03aa0aca6f17",
+                "parameters": [
+                    {
+                        "name": "question_id",
+                        "in": "path",
+                        "description": "ID de la pregunta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de respuestas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pregunta no encontrada"
+                    },
+                    "500": {
+                        "description": "Error inesperado"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Answers"
+                ],
+                "summary": "Crear respuesta a una pregunta",
+                "description": "Crear respuesta a una pregunta",
+                "operationId": "4ce66fd742521e1bc48ebcdfbcead308",
+                "parameters": [
+                    {
+                        "name": "question_id",
+                        "in": "path",
+                        "description": "ID de la pregunta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "answer_text"
+                                ],
+                                "properties": {
+                                    "answer_text": {
+                                        "type": "string",
+                                        "example": "Me gusta el azul"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Respuesta creada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pregunta no encontrada"
+                    },
+                    "422": {
+                        "description": "Validación fallida",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error inesperado"
+                    }
+                }
+            }
+        },
+        "/api/surveys/{survey_id}/answers": {
+            "get": {
+                "tags": [
+                    "Answers"
+                ],
+                "summary": "Listar respuestas de un survey",
+                "description": "Listar todas las respuestas de un survey",
+                "operationId": "0a119f1cf5f33d67474f19fc89a18a73",
+                "parameters": [
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "ID de la encuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de respuestas del survey",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Encuesta no encontrada"
+                    },
+                    "500": {
+                        "description": "Error inesperado"
+                    }
+                }
+            }
+        },
+        "/api/reports/survey/{survey_id}": {
+            "get": {
+                "tags": [
+                    "Reports"
+                ],
+                "summary": "Obtener reporte de un survey",
+                "description": "Reporte de un survey",
+                "operationId": "93fc5f78fd58ea2f23872d0e9c0817d4",
+                "parameters": [
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "ID de la encuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reporte generado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Encuesta no encontrada"
+                    },
+                    "500": {
+                        "description": "Error inesperado"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Registrar un nuevo usuario",
+                "description": "Registrar un nuevo usuario",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Juan Perez"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "juan@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario registrado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "type": "object"
+                                        },
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validación fallida",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Inicio de sesión de usuario",
+                "description": "Login de usuario",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "juan@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Inicio de sesión exitoso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "type": "object"
+                                        },
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Credenciales incorrectas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Cerrar sesión del usuario autenticado",
+                "description": "Logout de usuario",
+                "operationId": "fe8f3429cd6979b3b4517e186505f9f9",
+                "responses": {
+                    "200": {
+                        "description": "Sesión cerrada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/me": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Obtener información del usuario autenticado",
+                "description": "Obtener usuario autenticado",
+                "operationId": "9d9bc556f927575aa492a88c28fe5908",
+                "responses": {
+                    "200": {
+                        "description": "Datos del usuario autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/surveys": {
+            "get": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Listar todas las encuestas activas",
+                "description": "Listar encuestas activas",
+                "operationId": "7e96246f34de1fcd663f2d95a5079073",
+                "responses": {
+                    "200": {
+                        "description": "Listado de encuestas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Survey"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Crear una nueva encuesta",
+                "description": "Crear nueva encuesta",
+                "operationId": "a2cd6709081ad25c80c95f4cd8e97e2e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Encuesta de satisfacción"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Encuesta sobre satisfacción del cliente"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "active"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Encuesta creada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Survey"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validación fallida"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/surveys/{id}": {
+            "get": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Obtener encuesta por ID",
+                "description": "Mostrar encuesta por id",
+                "operationId": "be961dc9b72fd27b646853e31bdac701",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la encuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Encuesta obtenida",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Survey"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Encuesta no encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Actualizar encuesta",
+                "description": "Actualizar encuesta",
+                "operationId": "f44048e8ab2fb97dc41bb22ad241df04",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la encuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Encuesta actualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Survey"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "Encuesta no encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Eliminar encuesta",
+                "description": "Eliminar encuesta",
+                "operationId": "701b68adfa2b399169f7b0672ab909a1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la encuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Encuesta eliminada"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "Encuesta no encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/surveys/{survey_id}/questions/{question_id}": {
+            "delete": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Eliminar pregunta de encuesta",
+                "description": "Eliminar pregunta de encuesta",
+                "operationId": "07890c4b84d2ba6586e9faeda911ef18",
+                "parameters": [
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "ID de la encuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "question_id",
+                        "in": "path",
+                        "description": "ID de la pregunta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pregunta eliminada correctamente"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "Encuesta o pregunta no encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Answer": {
+                "title": "Answer",
+                "description": "Modelo de respuesta de una encuesta",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "survey_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "question_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "answer_text": {
+                        "type": "string",
+                        "example": "Rojo"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-11-02T10:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-11-02T10:00:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Question": {
+                "title": "Question",
+                "description": "Modelo de pregunta de una encuesta",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "survey_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "question_text": {
+                        "type": "string",
+                        "example": "¿Cuál es tu color favorito?"
+                    },
+                    "type": {
+                        "description": "Tipo de pregunta: select, rating, text",
+                        "type": "string",
+                        "example": "select"
+                    },
+                    "options": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "Rojo",
+                            "Verde",
+                            "Azul"
+                        ]
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-11-02T10:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-11-02T10:00:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Survey": {
+                "title": "Survey",
+                "description": "Modelo de encuesta",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Encuesta de satisfacción"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Encuesta sobre nuestro producto"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "active"
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "questions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Question"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "Modelo de usuario",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Juan Pérez"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "juan@example.com"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-11-02T10:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-11-02T10:00:00Z"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Answers",
+            "description": "Answers"
+        },
+        {
+            "name": "Reports",
+            "description": "Reports"
+        },
+        {
+            "name": "Auth",
+            "description": "Auth"
+        },
+        {
+            "name": "Surveys",
+            "description": "Surveys"
+        }
+    ]
+}
