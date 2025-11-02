@@ -3,9 +3,23 @@
 ## Descripción
 Proyecto de prueba que implementa encuestas, respuestas, reportes y autenticación usando Laravel, Redis Cache, y Swagger para documentación.
 
+## Recursos necesarios
+PHP, Laravel 12, SQLite y Composer
+
 ## Instalación
 
 1. Clonar el repositorio:
    ```bash
    git clone https://github.com/Alan320P/laravel-plugthem-test-AlanPerez.git
-   cd laravel-plugthem-test-AlanPerez
+   ubicarse en la carpeta del proyecto laravel-plugthem-test-AlanPerez
+   instalar dependecias con:composer install
+   Migrar y sembrar la base de datos:
+   php artisan migrate --seed
+   Ejecutar el servidor: php artisan serve
+
+## Comando Artisan
+   ```bash
+   php artisan survey:deactivate-inactive 
+   
+
+
