@@ -37,7 +37,7 @@ PHP, Laravel 12, SQLite y Composer
 - GET /api/surveys/{survey_id}/answers
 - GET /api/reports/survey/{survey_id}
 
-- Documentación con Swagger con el proyecto levantado: http://127.0.0.1:8000/api/documentation
+- Documentación con Swagger con el proyecto levantado: http://localhost:8000/api/documentation
 
 ## Comando Artisan
    ```bash
