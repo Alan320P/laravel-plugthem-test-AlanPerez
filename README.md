@@ -15,6 +15,28 @@ PHP, Laravel 12, SQLite y Composer
    Migrar y sembrar la base de datos: php artisan migrate --seed
    Ejecutar el servidor: php artisan serve
 
+## EndPoints
+
+- Auth
+POST /api/register
+POST /api/login
+POST /api/logout
+GET /api/me
+
+- Surveys
+GET /api/surveys
+POST /api/surveys
+GET /api/surveys/{id}
+PUT /api/surveys/{id}
+DELETE /api/surveys/{id}
+DELETE /api/surveys/{survey}/questions/{question}
+
+- Answers
+POST /api/questions/{question_id}/answers
+GET /api/questions/{question_id}/answers
+GET /api/surveys/{survey_id}/answers
+GET /api/reports/survey/{survey_id}
+
 ## Comando Artisan
    ```bash
    php artisan survey:deactivate-inactive 
