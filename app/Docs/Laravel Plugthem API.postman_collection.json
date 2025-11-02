@@ -1,0 +1,410 @@
+{
+	"info": {
+		"_postman_id": "1a2da752-106e-4308-bd6e-55128bef10f4",
+		"name": "Laravel Plugthem API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31837347"
+	},
+	"item": [
+		{
+			"name": "Sesión de usuario",
+			"item": [
+				{
+					"name": "Login Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"alan320p@gmail.com\",\r\n  \"password\": \"adDaiko\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comprobar estado de sesión",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|4axtq57zvd1NjKuWPlbki8ih0Lbac14nHCZckbh8cbc231c7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cerrar Sesión",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3|W0Jxaq3rto5BkQZhoBHH2cY9XdXqPT3crVYnIFDof9139696",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"alan320p@gmail.com\",\r\n  \"password\": \"adDaiko\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registro Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Alan Perez\",\r\n  \"email\": \"alan320p@gmail.com\",\r\n  \"password\": \"adDaiko\",\r\n  \"password_confirmation\": \"adDaiko\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Encuestas",
+			"item": [
+				{
+					"name": "Crear encuesta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|4axtq57zvd1NjKuWPlbki8ih0Lbac14nHCZckbh8cbc231c7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Encuesta de Preferencias\",\r\n  \"description\": \"Encuesta sobre gustos personales\",\r\n  \"status\": \"active\",\r\n  \"questions\": [\r\n    {\r\n      \"question_text\": \"¿Cuál es tu color favorito?\",\r\n      \"type\": \"select\",\r\n      \"options\": [\"Rojo\", \"Azul\", \"Verde\"]\r\n    },\r\n    {\r\n      \"question_text\": \"Califica tu experiencia con nuestro producto\",\r\n      \"type\": \"rating\"\r\n    },\r\n    {\r\n      \"question_text\": \"Escribe tu nombre\",\r\n      \"type\": \"text\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/surveys",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"surveys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista de encuestas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|4axtq57zvd1NjKuWPlbki8ih0Lbac14nHCZckbh8cbc231c7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Encuesta de Preferencias\",\r\n  \"description\": \"Encuesta sobre gustos personales\",\r\n  \"status\": \"active\",\r\n  \"questions\": [\r\n    {\r\n      \"question_text\": \"¿Cuál es tu color favorito?\",\r\n      \"type\": \"select\",\r\n      \"options\": [\"Rojo\", \"Azul\", \"Verde\"]\r\n    },\r\n    {\r\n      \"question_text\": \"Califica tu experiencia con nuestro producto\",\r\n      \"type\": \"rating\"\r\n    },\r\n    {\r\n      \"question_text\": \"Escribe tu nombre\",\r\n      \"type\": \"text\"\r\n    }\r\n  ]\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/surveys",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"surveys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Responder una pregunta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|4axtq57zvd1NjKuWPlbki8ih0Lbac14nHCZckbh8cbc231c7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"answer_text\": \"Azul\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/questions/20/answers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"questions",
+								"20",
+								"answers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar encuesta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|4axtq57zvd1NjKuWPlbki8ih0Lbac14nHCZckbh8cbc231c7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Encuesta actualizada\",\r\n  \"description\": \"Describe mas las cosas\",\r\n  \"status\": \"active\",\r\n  \"questions\": [\r\n    {\r\n      \"id\": 3,\r\n      \"question_text\": \"¿Cuál es tu color favorito (actualizado)?\",\r\n      \"type\": \"select\",\r\n      \"options\": [\"Rojo\", \"Azul\", \"Verde\", \"Amarillo\"]\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"question_text\": \"Califica tu experiencia (1-5)\",\r\n      \"type\": \"rating\"\r\n    },\r\n    {\r\n      \"question_text\": \"¿Qué mejorarías de nuestro producto?\",\r\n      \"type\": \"text\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/surveys/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"surveys",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver reporte",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|4axtq57zvd1NjKuWPlbki8ih0Lbac14nHCZckbh8cbc231c7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Encuesta actualizada\",\r\n  \"description\": \"Describe mas las cosas\",\r\n  \"status\": \"active\",\r\n  \"questions\": [\r\n    {\r\n      \"id\": 3,\r\n      \"question_text\": \"¿Cuál es tu color favorito (actualizado)?\",\r\n      \"type\": \"select\",\r\n      \"options\": [\"Rojo\", \"Azul\", \"Verde\", \"Amarillo\"]\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"question_text\": \"Califica tu experiencia (1-5)\",\r\n      \"type\": \"rating\"\r\n    },\r\n    {\r\n      \"question_text\": \"¿Qué mejorarías de nuestro producto?\",\r\n      \"type\": \"text\"\r\n    }\r\n  ]\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/reports/survey/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"reports",
+								"survey",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar una pregunta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|4axtq57zvd1NjKuWPlbki8ih0Lbac14nHCZckbh8cbc231c7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Encuesta actualizada\",\r\n  \"description\": \"Describe mas las cosas\",\r\n  \"status\": \"active\",\r\n  \"questions\": [\r\n    {\r\n      \"id\": 3,\r\n      \"question_text\": \"¿Cuál es tu color favorito (actualizado)?\",\r\n      \"type\": \"select\",\r\n      \"options\": [\"Rojo\", \"Azul\", \"Verde\", \"Amarillo\"]\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"question_text\": \"Califica tu experiencia (1-5)\",\r\n      \"type\": \"rating\"\r\n    },\r\n    {\r\n      \"question_text\": \"¿Qué mejorarías de nuestro producto?\",\r\n      \"type\": \"text\"\r\n    }\r\n  ]\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/surveys/7/questions/22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"surveys",
+								"7",
+								"questions",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar una encuesta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|4axtq57zvd1NjKuWPlbki8ih0Lbac14nHCZckbh8cbc231c7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Encuesta actualizada\",\r\n  \"description\": \"Describe mas las cosas\",\r\n  \"status\": \"active\",\r\n  \"questions\": [\r\n    {\r\n      \"id\": 3,\r\n      \"question_text\": \"¿Cuál es tu color favorito (actualizado)?\",\r\n      \"type\": \"select\",\r\n      \"options\": [\"Rojo\", \"Azul\", \"Verde\", \"Amarillo\"]\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"question_text\": \"Califica tu experiencia (1-5)\",\r\n      \"type\": \"rating\"\r\n    },\r\n    {\r\n      \"question_text\": \"¿Qué mejorarías de nuestro producto?\",\r\n      \"type\": \"text\"\r\n    }\r\n  ]\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/surveys/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"surveys",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
